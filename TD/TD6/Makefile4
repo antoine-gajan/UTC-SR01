@@ -1,0 +1,10 @@
+OBJS = mystrshow.o mystrinv.o mystrchrn.o teststring.o
+
+teststring : $(OBJS)
+	gcc -o $@ $(OBJS)
+
+.c.o :
+	gcc -c $<
+
+clean :
+	rm teststring $(OBJS)

@@ -1,0 +1,14 @@
+teststring : mystrshow.o mystrinv.o mystrchrn.o teststring.o
+	gcc -o testring mystrshow.o mystrinv.o mystrchrn.o teststring.o
+
+mystrshow.o : mystrshow.c mystrshow.h
+	gcc -c mystrshow.c
+
+mystrinv.o : mystrinv.c mystrinv.h
+	gcc -c mystrinv.c
+
+mystrchrn.o : mystrchrn.c mystrchrn.h
+	gcc -c mystrchrn.c
+
+teststring.o : teststring.c
+	gcc -c teststring.c
