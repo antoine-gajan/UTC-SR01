@@ -1,0 +1,25 @@
+Exercice 1
+grep -E : expression régulière étendue
+grep -P : expression perl
+grep -l : 
+grep -L : 
+grep -c : compte le nombre de lignes qui satisfassent la condition
+grep -n : avec le numéro de la ligne dans le fichier
+
+
+Exercice 2
+1) grep -E "^06[[:digit:]]{8}" tel.txt
+2) grep -vcE "^06[[:digit:]]{8}" tel.txt
+3) grep -E "^(06|07)[[:digit:]]{8}" tel.txt
+4) grep -E "^(06|07)[[:punct:]]?([[:digit:]]{2}[[:punct:]]?){4}" tel.txt
+
+Exercice 3
+1) grep -E "^[[:alpha:]]+://([[:alnum:]]+\.)*
+2) grep -E "^[[:alpha:]]+://([[:alnum:]]+\.?[[:alnum:]]+)*"
+3) grep -E "^(http|ftp)+://([[:alnum:]]+\.?[[:alnum:]]+)*"
+4) grep -E "^(http|ftp)+://([[:alnum:]]+\.?[[:alnum:]]+)*(:[[:digit:]]+)?"
+
+Exercice 4
+2) echo antoine1.gajan@gmail.com | sed 's/\(.*\)@\(.*\)/login=\1 domaine=\2/'
+3) echo antoine.gajan@gmail.com | sed 's/\(.*\)\.\(.*\)@\(.*\)/prenom=\1 nom=\2 domaine=\3/'
+4) echo antoine.gajan@etu.utc.fr | sed 's/\(.*\)\.\(.*\)@etu\.\(.*\)/prenom=\1 nom=\2 domaine=\3/'
