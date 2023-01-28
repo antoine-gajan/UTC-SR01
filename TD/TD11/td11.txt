@@ -1,0 +1,71 @@
+Exercice 1
+
+1) Informations concernant le login courant : id
+2) Informations concernant le login Malena : id Malena
+3) Liste les utilisateurs connectés au serveur : who
+4) echo $SHELL (quel shell est utilisé par défaut) ou echo $0 (quel shell utilisé actuellement) ou cat /etc/shells (liste les shells)
+
+Exercice 2
+
+1) Liste les utilisateurs de l'OS : cat /etc/passwd | cut -d: -f1
+2) Liste les groupe de l'OS : cat /etc/group
+3) Se mettre en mode root : sudo -i
+4) Création dossier Sauvegarde : mkdir Sauvegarde
+5) cp /etc/passwd /etc/group Sauvegarde
+6) Création des groupes :
+groupadd -g 1025 LINUX
+groupadd -g 1026 WINDOWS
+groupadd -g 1027 GroupeD
+groupadd -g 1028 GoupeV
+
+Création des répertoires parents des répertoires de connexion des utilisateurs
+
+mkdir /home/linux/antoine
+mkdir /home/linux/xavier
+mkdir /home/linux/vincent
+mkdir /home/linux/david
+
+Création des utilisateurs
+useradd malena --uid 1040 --create-home --groups LINUX --gid LINUX --shell /bin/bash
+useradd antoine -u 2022 -m -s /bin/bash
+useradd xavier -u 2023 -G LINUX -m -s /bin/bash
+useradd vincent -u 2024 -m -s /bin/bash
+useradd david -u 2025 -G WINDOWS -m -s /bin/bash
+
+7) Définir les mots de passe pour chaque utilisateur :
+passwd antoine
+passwd xavier
+passwd vincent
+passwd david
+passwd malena
+
+8) Configurer les paramètres du mot de passe de Malena
+chage malena
+
+Exercice 3
+
+1) touch emptyfile
+chmod 000 emptyfile
+chmod 4 emptyfile (change pour other)
+chmod 44 emptyfile (change pour group et other)
+
+2) L'ordinateur a besoin de lire le fichier pour l'executer
+
+3) Suppression impossible en raison du sticky bit : tmp est ce que nous appelons un répertoire accessible en écriture pour tous, ce qui signifie que tout utilisateur peut y écrire. Mais nous ne voulons pas qu’un utilisateur modifie des fichiers créés par d’autres, donc le sticky bit est activé (comme indiqué par le t sur les permissions pour les autres). Cela signifie qu’un utilisateur peut supprimer des fichiers dans /tmp, mais seulement s’il a créé ces fichiers.
+
+4) Nous avons supprimé les permissions d’exécution pour l’utilisateur qui possède le fichier. Le s (ou t) prend la place du x sur la sortie de ls -l, le système a donc besoin d’un moyen de montrer si l’utilisateur a des permissions d’exécution ou non. Il le fait en modifiant la casse du caractère spécial.
+Un s minuscule sur le premier groupe de permissions signifie que l’utilisateur qui possède le fichier a des permissions d’exécution et que le bit SUID est activé. Un S majuscule signifie que l’utilisateur qui possède le fichier n’a pas (-) les permissions d’exécution et que le bit SUID est activé.
+On peut en dire autant du SGID. Un s minuscule sur le deuxième groupe de permissions signifie que le groupe qui possède le fichier a des permissions d’exécution et que le bit SGID est activé. Un S majuscule signifie que le groupe qui possède le fichier n’a pas les permissions d’exécution (-) et que le bit SGID est activé.
+C’est également vrai pour le sticky bit, représenté par le t dans le troisième groupe des permissions. Un t minuscule signifie que le sticky bit est activé et que les autres ont des permissions d’exécution. T majuscule signifie que le sticky bit est activé et que les autres n’ont pas de droits d’exécution.
+
+5) chmod 3777 /Box
+
+Exercice 4
+
+1) useradd -m dave
+2) 
+3) id dave
+4) groupadd sys_admin
+groupadd web_admin
+groupadd db_admin
+5) useradd carol -u 1035 -m -g sys_admin -G db_admin web_admin
